@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Will you marry me? 💖</title>
+  <style>
+    :root{ --bg:#fff6fb; --card:#fff; --accent:#ff6b9a; --muted:#6b7280 }
+    *{box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; margin:0; min-height:100vh;
+      display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#fff6fb 0%, #eaf6ff 100%);}
+    .card{width:95%; max-width:760px; background:var(--card); border-radius:16px; padding:28px; box-shadow:0 10px 30px rgba(16,24,40,0.08); text-align:center}
+    h1{margin:0 0 8px; font-size:28px; color:#111827}
+    p.lead{margin:0 0 24px; color:var(--muted)}
+
+    .buttons{position:relative; height:160px; display:flex; align-items:center; justify-content:center}
+    .btn{appearance:none; border:0; padding:12px 20px; border-radius:999px; font-weight:600; cursor:pointer; font-size:16px; box-shadow:0 6px 18px rgba(16,24,40,0.08)}
+    .yes{background:linear-gradient(90deg,#34d399,#10b981); color:white; margin-right:12px}
+    .no{background:linear-gradient(90deg,#ffd6e0,#ff9bb0); color:white; position:absolute; transition:transform 300ms ease, left 300ms ease, top 300ms ease}
+
+    .hint{margin-top:18px; min-height:24px; color:#6b7280}
+
+    .overlay{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(2,6,23,0.5);}
+    .overlay.show{display:flex}
+    .modal{background:var(--card); border-radius:12px; padding:18px; max-width:520px; width:90%; text-align:center}
+    .modal img{max-width:100%; border-radius:12px}
+    .close{margin-top:12px; background:transparent; border:0; color:var(--muted); cursor:pointer}
+
+    .sparkle{position:absolute; width:10px; height:10px; border-radius:50%; opacity:0.9; transform:translate(-50%,-50%); pointer-events:none}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Will you marry me? 💍</h1>
+    <p class="lead">A small page I made — choose your answer.</p>
+
+    <div class="buttons" id="stage">
+      <button class="btn yes" id="yesBtn">Yes, of course! ❤️</button>
+      <button class="btn no" id="noBtn">No</button>
+      <div id="sparkles"></div>
+    </div>
+
+    <div class="hint" id="hint">Be honest — but choose carefully 😉</div>
+  </div>
+
+  <!-- TWO GIF MODAL -->
+  <div class="overlay" id="overlay">
+    <div class="modal" id="modalBox">
+      <h2 id="modalTitle">Yay! She said YES 🥰</h2>
+
+      <!-- First cute cat GIF -->
+      <img id="gif1" src="cat1.gif" style="display:block;">
+
+      <!-- Second cute cat GIF -->
+      <img id="gif2" src="cat1.gif" style="display:none;">
+
+      <button class="close" id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const stage = document.getElementById('stage');
+    const hint = document.getElementById('hint');
+    const overlay = document.getElementById('overlay');
+    const closeModal = document.getElementById('closeModal');
+
+    const gif1 = document.getElementById('gif1');
+    const gif2 = document.getElementById('gif2');
+    const modalTitle = document.getElementById('modalTitle');
+
+    let gifStep = 1;
+
+    const phrases = [
+      'Soch lo phirse... 🤭',
+      'Ek aur chance? ❤️',
+      'Acha socho — tum hi ho mera favorite! 🥺',
+      'Bas ek baar haan bolo na... 🌸'
+    ];
+
+    let noClicks = 0;
+
+    function placeNoAt(xPct, yPct){
+      noBtn.style.left = xPct + '%';
+      noBtn.style.top = yPct + '%';
+      noBtn.style.transform = 'translate(-50%,-50%)';
+    }
+
+    function randomPositionAvoidingYes(){
+      const rect = stage.getBoundingClientRect();
+      const yesRect = yesBtn.getBoundingClientRect();
+
+      for(let i=0;i<12;i++){
+        const x = 10 + Math.random()*80;
+        const y = 15 + Math.random()*70;
+        const px = rect.left + rect.width*(x/100);
+        const py = rect.top + rect.height*(y/100);
+        const yesCx = yesRect.left + yesRect.width/2;
+        const yesCy = yesRect.top + yesRect.height/2;
+        const dist = Math.hypot(px-yesCx, py-yesCy);
+        if(dist > Math.max(yesRect.width, yesRect.height) * 0.9) return {x,y};
+      }
+      return {x:80*Math.random()+10, y:70*Math.random()+15};
+    }
+
+    function moveNoButton(){
+      noClicks++;
+      const pos = randomPositionAvoidingYes();
+      placeNoAt(pos.x, pos.y);
+      hint.textContent = phrases[(noClicks-1) % phrases.length];
+
+      if(noClicks >= 3){
+        for(let i=0;i<3;i++){
+          setTimeout(()=>{
+            const p = {x:10 + Math.random()*80, y:15 + Math.random()*70};
+            placeNoAt(p.x, p.y);
+          }, 200 + i*220);
+        }
+      }
+
+      if(noClicks === 6){
+        hint.textContent = 'Awww... last try? ❤️';
+      }
+    }
+
+    noBtn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    noBtn.addEventListener('mouseenter', ()=>{
+      if(Math.random() < 0.7){
+        moveNoButton();
+      }
+    });
+
+    // YES → first GIF
+    yesBtn.addEventListener('click', ()=>{
+      overlay.classList.add('show');
+      gifStep = 1;
+      gif1.style.display = 'block';
+      gif2.style.display = 'none';
+      modalTitle.textContent = 'Yay! She said YES 🥰';
+    });
+
+    // Close behavior → switch GIFs
+    closeModal.addEventListener('click', ()=>{
+      if(gifStep === 1){
+        gif1.style.display = 'none';
+        gif2.style.display = 'block';
+        modalTitle.textContent = 'Even cuter now 😻';
+        gifStep = 2;
+      } else {
+        overlay.classList.remove('show');
+      }
+    });
+
+    placeNoAt(70,50);
+  </script>
+</body>
+</html>
