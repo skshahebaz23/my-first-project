@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap')
-
-
-
+@import url('https://fonts.googleapis.com/css2?family=Zeyada&display=swap');
 
 body {
   height: 100vh;
@@ -14,21 +11,28 @@ body {
   background-position: center center;
 }
 
+/*** WRAPPER — MOVES ON DRAG ***/
+.paper-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  touch-action: none;
+}
+
+/*** PAPER — DESIGN ONLY ***/
 .paper {
   background-image: url("paper.jpg");
   background-size: 500px;
   background-position: center center;
   padding: 20px 100px;
-/*  min-width: 800px; */
-  
+
+  box-shadow: 1px 15px 20px rgba(0,0,0,0.5);
+  position: relative;
+
   transform: rotateZ(-5deg);
-  box-shadow: 1px 15px 20px 0px rgba(0,0,0,0.5);
-  
-  position: absolute;
 }
 
 .paper.heart {
-  position: relative;
   width: 200px;
   height: 200px;
   padding: 0;
@@ -68,9 +72,4 @@ p {
   color: rgb(0,0,100);
   opacity: 0.75;
   user-select: none;
-  
-  // filter: drop-shadow(2px 1.5px 1px rgba(0,0,105,0.9));
-
 }
-
-
