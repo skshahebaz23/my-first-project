@@ -1,21 +1,13 @@
 let highestZ = 1;
 
 class Paper {
-  holdingPaper = false;
-  mouseTouchX = 0;
-  mouseTouchY = 0;
-  mouseX = 0;
-  mouseY = 0;
-  prevMouseX = 0;
-  prevMouseY = 0;
-  velX = 0;
-  velY = 0;
-  rotation = Math.random() * 30 - 15;
-  currentPaperX = 0;
-  currentPaperY = 0;
-  rotating = false;
+  holding = false;
+  startX = 0;
+  startY = 0;
+  paperX = 0;
+  paperY = 0;
 
-  getClientPos(e) {
+  getPos(e) {
     if (e.touches) {
       return {
         x: e.touches[0].clientX,
@@ -30,92 +22,53 @@ class Paper {
 
   init(paper) {
 
-    // MOUSE + TOUCH MOVE
-    const moveHandler = (e) => {
-      const pos = this.getClientPos(e);
+    const move = (e) => {
+      if (!this.holding) return;
 
-      if (!this.rotating) {
-        this.mouseX = pos.x;
-        this.mouseY = pos.y;
+      const pos = this.getPos(e);
 
-        this.velX = this.mouseX - this.prevMouseX;
-        this.velY = this.mouseY - this.prevMouseY;
-      }
+      const dx = pos.x - this.startX;
+      const dy = pos.y - this.startY;
 
-      const dirX = pos.x - this.mouseTouchX;
-      const dirY = pos.y - this.mouseTouchY;
-      const dirLength = Math.sqrt(dirX * dirX + dirY * dirY);
-      const dirNormalizedX = dirX / dirLength;
-      const dirNormalizedY = dirY / dirLength;
+      this.paperX += dx;
+      this.paperY += dy;
 
-      const angle = Math.atan2(dirNormalizedY, dirNormalizedX);
-      let degrees = 180 * angle / Math.PI;
-      degrees = (360 + Math.round(degrees)) % 360;
+      this.startX = pos.x;
+      this.startY = pos.y;
 
-      if (this.rotating) {
-        this.rotation = degrees;
-      }
-
-      if (this.holdingPaper) {
-        if (!this.rotating) {
-          this.currentPaperX += this.velX;
-          this.currentPaperY += this.velY;
-        }
-        this.prevMouseX = this.mouseX;
-        this.prevMouseY = this.mouseY;
-
-        paper.style.transform =
-          `translateX(${this.currentPaperX}px) translateY(${this.currentPaperY}px) rotateZ(${this.rotation}deg)`;
-      }
+      paper.style.transform =
+        `translate(${this.paperX}px, ${this.paperY}px)`;
 
       e.preventDefault();
     };
 
-    document.addEventListener('mousemove', moveHandler);
-    document.addEventListener('touchmove', moveHandler, { passive: false });
+    const down = (e) => {
+      const pos = this.getPos(e);
+      this.holding = true;
 
+      this.startX = pos.x;
+      this.startY = pos.y;
 
-    // MOUSE + TOUCH DOWN
-    const downHandler = (e) => {
-      const pos = this.getClientPos(e);
-
-      if (this.holdingPaper) return;
-      this.holdingPaper = true;
-
-      paper.style.zIndex = highestZ;
-      highestZ += 1;
-
-      this.mouseTouchX = pos.x;
-      this.mouseTouchY = pos.y;
-      this.prevMouseX = pos.x;
-      this.prevMouseY = pos.y;
-
-      // right click check (mouse only)
-      if (e.button === 2) {
-        this.rotating = true;
-      }
-
+      paper.style.zIndex = highestZ++;
       e.preventDefault();
     };
 
-    paper.addEventListener('mousedown', downHandler);
-    paper.addEventListener('touchstart', downHandler, { passive: false });
-
-
-    // MOUSE + TOUCH UP
-    const upHandler = () => {
-      this.holdingPaper = false;
-      this.rotating = false;
+    const up = () => {
+      this.holding = false;
     };
 
-    window.addEventListener('mouseup', upHandler);
-    window.addEventListener('touchend', upHandler);
+    // Mouse
+    paper.addEventListener("mousedown", down);
+    document.addEventListener("mousemove", move);
+    document.addEventListener("mouseup", up);
+
+    // Touch
+    paper.addEventListener("touchstart", down, { passive: false });
+    document.addEventListener("touchmove", move, { passive: false });
+    document.addEventListener("touchend", up);
   }
 }
 
-const papers = Array.from(document.querySelectorAll('.paper'));
-
-papers.forEach(paper => {
-  const p = new Paper();
-  p.init(paper);
+document.querySelectorAll(".paper").forEach((paper) => {
+  new Paper().init(paper);
 });
