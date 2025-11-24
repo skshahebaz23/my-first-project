@@ -83,3 +83,4 @@ class Paper {
 document.querySelectorAll(".paper").forEach((paper) => {
   new Paper().init(paper);
 });
+
