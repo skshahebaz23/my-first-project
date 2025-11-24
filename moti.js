@@ -6,7 +6,6 @@ class Paper {
   startY = 0;
   paperX = 0;
   paperY = 0;
-  rotation = Math.random() * 30 - 15;
 
   getPos(e) {
     if (e.touches) {
@@ -15,25 +14,13 @@ class Paper {
         y: e.touches[0].clientY
       };
     }
-    return { x: e.clientX, y: e.clientY };
-  }
-
-  updateTransform(paper) {
-    paper.style.transform =
-      `translate(${this.paperX}px, ${this.paperY}px) rotate(${this.rotation}deg)`;
+    return {
+      x: e.clientX,
+      y: e.clientY
+    };
   }
 
   init(paper) {
-
-    // ⭐ FIX: Center all papers on screen on start
-    const centerX = window.innerWidth / 2 - paper.offsetWidth / 2;
-    const centerY = window.innerHeight / 2 - paper.offsetHeight / 2;
-
-    this.paperX = centerX;
-    this.paperY = centerY;
-
-    paper.style.position = "absolute";
-    this.updateTransform(paper);
 
     const move = (e) => {
       if (!this.holding) return;
@@ -49,14 +36,16 @@ class Paper {
       this.startX = pos.x;
       this.startY = pos.y;
 
-      this.updateTransform(paper);
+      paper.style.transform =
+        `translate(${this.paperX}px, ${this.paperY}px)`;
+
       e.preventDefault();
     };
 
     const down = (e) => {
       const pos = this.getPos(e);
-
       this.holding = true;
+
       this.startX = pos.x;
       this.startY = pos.y;
 
