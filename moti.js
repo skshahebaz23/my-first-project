@@ -6,6 +6,7 @@ class Paper {
   startY = 0;
   paperX = 0;
   paperY = 0;
+  rotation = Math.random() * 30 - 15;  // keep your original rotation
 
   getPos(e) {
     if (e.touches) {
@@ -20,7 +21,14 @@ class Paper {
     };
   }
 
+  updateTransform(paper) {
+    paper.style.transform =
+      `translate(${this.paperX}px, ${this.paperY}px) rotate(${this.rotation}deg)`;
+  }
+
   init(paper) {
+    // Apply first rotation
+    this.updateTransform(paper);
 
     const move = (e) => {
       if (!this.holding) return;
@@ -36,8 +44,7 @@ class Paper {
       this.startX = pos.x;
       this.startY = pos.y;
 
-      paper.style.transform =
-        `translate(${this.paperX}px, ${this.paperY}px)`;
+      this.updateTransform(paper);
 
       e.preventDefault();
     };
