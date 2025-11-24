@@ -1,4 +1,4 @@
-let highestZ = 1;
+let highestZ = 10;
 
 class Paper {
   holding = false;
@@ -6,7 +6,7 @@ class Paper {
   startY = 0;
   paperX = 0;
   paperY = 0;
-  rotation = Math.random() * 30 - 15;
+  rotation = Math.random() * 20 - 10;
 
   getPos(e) {
     if (e.touches) {
@@ -24,13 +24,16 @@ class Paper {
   }
 
   init(paper) {
-    // ✨ ORIGINAL POSITION KO LIKALNA (WITHOUT MOVING IT)
-    const rect = paper.getBoundingClientRect();
-    this.paperX = rect.left;
-    this.paperY = rect.top;
 
-    paper.style.position = "fixed";      // SAME EXACT POSITION
-    this.updateTransform(paper);         // Apply rotation + fixed starting position
+    // SAB PAPERS KO CENTER ME START KARNE KA CODE
+    const centerX = window.innerWidth / 2 - paper.offsetWidth / 2;
+    const centerY = window.innerHeight / 2 - paper.offsetHeight / 2;
+
+    this.paperX = centerX;
+    this.paperY = centerY;
+
+    paper.style.position = "fixed";
+    this.updateTransform(paper);
 
     const move = (e) => {
       if (!this.holding) return;
@@ -65,12 +68,12 @@ class Paper {
       this.holding = false;
     };
 
-    // Mouse
+    // Mouse Events
     paper.addEventListener("mousedown", down);
     document.addEventListener("mousemove", move);
     document.addEventListener("mouseup", up);
 
-    // Touch
+    // Touch Events
     paper.addEventListener("touchstart", down, { passive: false });
     document.addEventListener("touchmove", move, { passive: false });
     document.addEventListener("touchend", up);
