@@ -6,7 +6,7 @@ class Paper {
   startY = 0;
   paperX = 0;
   paperY = 0;
-  rotation = Math.random() * 30 - 15;  // keep your original rotation
+  rotation = Math.random() * 30 - 15;
 
   getPos(e) {
     if (e.touches) {
@@ -15,10 +15,7 @@ class Paper {
         y: e.touches[0].clientY
       };
     }
-    return {
-      x: e.clientX,
-      y: e.clientY
-    };
+    return { x: e.clientX, y: e.clientY };
   }
 
   updateTransform(paper) {
@@ -27,8 +24,13 @@ class Paper {
   }
 
   init(paper) {
-    // Apply first rotation
-    this.updateTransform(paper);
+    // ✨ ORIGINAL POSITION KO LIKALNA (WITHOUT MOVING IT)
+    const rect = paper.getBoundingClientRect();
+    this.paperX = rect.left;
+    this.paperY = rect.top;
+
+    paper.style.position = "fixed";      // SAME EXACT POSITION
+    this.updateTransform(paper);         // Apply rotation + fixed starting position
 
     const move = (e) => {
       if (!this.holding) return;
@@ -45,14 +47,13 @@ class Paper {
       this.startY = pos.y;
 
       this.updateTransform(paper);
-
       e.preventDefault();
     };
 
     const down = (e) => {
       const pos = this.getPos(e);
-      this.holding = true;
 
+      this.holding = true;
       this.startX = pos.x;
       this.startY = pos.y;
 
