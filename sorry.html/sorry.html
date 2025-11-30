@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry 💗</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #ffe6f2;
+        font-family: "Poppins", sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        background: #fff;
+        padding: 40px;
+        width: 85%;
+        max-width: 380px;
+        border-radius: 25px;
+        text-align: center;
+        box-shadow: 0 8px 30px rgba(255, 140, 170, 0.25);
+        animation: pop 0.8s ease;
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0.5); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+        font-size: 40px;
+        color: #ff6fa8;
+        margin: 0;
+        font-weight: 700;
+        text-shadow: 0px 0px 10px #ffc9df;
+    }
+
+    p {
+        margin: 15px 0 25px;
+        font-size: 18px;
+        color: #444;
+    }
+
+    button {
+        background: #ff8ec7;
+        border: none;
+        color: white;
+        padding: 12px 25px;
+        font-size: 18px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0px 5px 15px rgba(255, 143, 189, 0.5);
+    }
+
+    button:hover {
+        background: #ff6fa8;
+        transform: scale(1.08);
+    }
+
+    #thank {
+        display: none;
+        margin-top: 20px;
+        font-size: 20px;
+        color: #ff4f88;
+        font-weight: 600;
+    }
+
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        font-size: 20px;
+        animation: floatUp 4s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(-600px); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Sorry 😔💗</h1>
+    <p>Maine galti ki...  
+    Par dil se maafi chahta hoon 🌸</p>
+
+    <button onclick="sayThanks()">Forgive Me? 🫶</button>
+
+    <div id="thank">Thank you cutie… 💗✨</div>
+</div>
+
+<script>
+    function sayThanks() {
+        document.getElementById("thank").style.display = "block";
+    }
+
+    // Cute floating hearts
+    function createHeart() {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💗";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.bottom = "0px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }
+
+    setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>

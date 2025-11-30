@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cute sorry msg💗</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: linear-gradient(180deg, #0a0d24, #1a103a);
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        color: white;
+        position: relative;
+    }
+
+    /* Floating hearts */
+    .heart {
+        position: absolute;
+        color: #ff7aa7;
+        font-size: 20px;
+        animation: float 6s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); opacity: 0.9; }
+        100% { transform: translateY(-600px); opacity: 0; }
+    }
+
+    /* Page Box */
+    .page {
+        display: none;
+        text-align: center;
+        width: 85%;
+        max-width: 430px;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.07);
+        border-radius: 20px;
+        backdrop-filter: blur(5px);
+        animation: fade 0.6s ease;
+    }
+
+    @keyframes fade {
+        0% { opacity: 0; transform: scale(0.85); }
+        100% { opacity: 1; transform: scale(1); }
+    }
+
+    h1 {
+        color: #ff90c8;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        background: #ff7fb2;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 25px;
+        color: white;
+        cursor: pointer;
+        font-size: 17px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #ff5c98;
+        transform: scale(1.07);
+    }
+
+    /* Cute Animation Box - PAGE 1 */
+    .cute-anim {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 20px;
+        background-color: #ffb3d6;
+        border-radius: 25px;
+        box-shadow: 0 0 18px #ff74b9;
+        overflow: hidden;
+    }
+
+    .cute-anim img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* PERFECT GIF BOX */
+    .gif-box {
+        width: 100%;
+        height: 240px;
+        border-radius: 20px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        background: #ffb3d6;
+        padding: 0;
+        box-shadow: 0 0 20px #ff74b9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gif-box img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 20px;
+        object-fit: contain;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page" id="page1" style="display:block;">
+    <h1>💗 Page 1</h1>
+
+    <div class="cute-anim">
+        <img src="coming.gif">
+    </div>
+
+    <p>Hello shona! dekho mai phirse aagaya aapko sorry bolne…</p>
+    <p>I know aapko ghussa ata… isliye to aaya hu 😌💕</p>
+
+    <button onclick="next(1)">Next ➜</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h1>🌙 Page 2</h1>
+
+    <div class="gif-box">
+        <img src="tease.gif">
+    </div>
+
+    <p>hey,i am back to disturb you again😊</p>
+    <p>tum ghussa karo ya na karo lekin mai aapko
+        sorry bolkar thoda pareshan zarur karunga
+        <b>SORRY!!!!😉</b>
+    </p>
+
+    <button onclick="next(2)">Next ➜</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+    <h1>✨ Page 3</h1>
+
+    <div class="gif-box">
+        <img src="innocent.gif">
+    </div>
+
+    <p>achah ruko to kaha jare idher au😊</p>
+    <p>haa pata hai bhot pareshan karta hu sorry bol kar
+        lekin dekha jaye to galti bhi meri hoti hai na isliye sorry bolna to zaruri hojata,
+        sorry na maaf kardo,aapka pyaara stupid hu na ji...plzzzz🥹
+    </p>
+
+    <button onclick="next(3)">Next ➜</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+    <h1>💞 Page 4</h1>
+
+    <div class="gif-box">
+        <img src="crying.gif">
+    </div>
+
+    <p>aur suno aaj mere dil ke haal bata hi deta hu💗</p>
+    <p>aap jab bhi mujhse naraz hote na mujhe kuch bhi achah nhi lagta 
+       bss baichain rehta hu kahi aap mujhse pareshan ho kar mujhe chor ka na chala jaye,
+       bhot dar lagta hai aapke ignorance se ek ajeeb ghabrahat si hoti...bhot rona aata hai
+       and baar baar yehi sawal ata ki jo mere itne close hai unhe mai kaise hurt kar deta hu😣
+    </p>
+
+    <button onclick="next(4)">Next ➜</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+    <h1>🫶 Page 5</h1>
+
+    <div class="gif-box">
+        <img src="love.gif">
+    </div>
+
+    <p>Tum naraz hote to aisa lagta mai chai hu bina shakkar ke🥲</p>
+    <p>tumhari narazgi bhale hi 5 min ki ho lekin mujhe wo 5 ghante 
+        jiasi lagti hai,pata nhi mai itna hurt kaise kardeta hu aapko
+        shyd isiliye ki jaha pyaar hota hai waha thoda to nok jhok honi hi chahiye na.. 
+        pehle jab aap ignore karte the mujhe waqt nhi dete the to tab mujhe kuch nhi lagta tha lekin
+        ab jab mai aap se behad pyaar karne laga hu to har waqt aapke paas rehna chahta hu 
+        may be shyd allah ne isiliye aapko meri life me bheja...thenk you sooo much to
+        come in my life janu🥰
+    </p>
+
+    <button onclick="next(5)">Next ➜</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="page6">
+    <h1>💖 Page 6</h1>
+
+    <div class="gif-box">
+        <img src="fight.gif">
+    </div>
+
+    <h2>aapki ek nazar kaafi hai  mujhe maaf karne👀,
+        sorry bolne ki adat to pyaar me hogai na ji🤗
+    </h2>
+    <p>acha baba ab maan bhi jau na ji
+        aapki is cute si narazgi dekhne ke liye bhi
+         kabhi kabhi sorry boldeta hu,</p>
+    <h2>last sorry of the day....ab tumhari ek
+        smile ki zarurat hai warna kal phir shuru hojuanga.😉
+    </h2>
+    <p>maaf kardo meri janu plzzzz🥹 ager aaj aap ne maaf
+        ne mujhe maaf kadiya then mai samjhunga ki aapne 
+        mere saari galtiyo ko maaf kardiya...🥲
+    </p>
+
+    <button onclick="next(6)">Forgive Me? 😔💕</button>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="page7">
+    <h1>💗 Thank You so much😘</h1>
+    <h2>i have something special for you...💝
+    This flower will never wilt...🥀</h2>
+    <h2>just like my love for you,i promise to cherish you
+        every single day and never take your beautiful
+        heart for granted again...💘
+    </h2>
+    <h1>you mean everything to me!!💝😘</h1>
+   
+    <div class="gif-box">
+        <img src="flower.gif">
+    </div>
+
+    <h2><b>ab aapne mujhe maaf kar hi diye hai to👉👈 
+    </b></h2>
+
+    <button onclick="next(7)">LET'S HUG🥰🤗😘 </button>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" id="page8">
+    <h1>you are always speacial to me💝</h1>
+
+    <div class="gif-box">
+        <img src="hug.gif">
+    </div>
+
+    <h1>i dont need anything fancy right now...</h1>
+    <h1><b>JUST YOUR ARMS AROUND ME,THATS ALL I WANT..💝💕</b></h1>
+
+    <button onclick="alert('Love you cutie pie 💗✨')">Finish 💗</button>
+</div>
+
+<!-- MUSIC -->
+<audio id="bgm" autoplay loop>
+    <source src="hairan.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    // Fix autoplay on mobile
+    document.addEventListener("click", function () {
+        let a = document.getElementById("bgm");
+        if (a.paused) a.play();
+    });
+
+    function next(n) {
+        document.getElementById("page" + n).style.display = "none";
+        document.getElementById("page" + (n + 1)).style.display = "block";
+    }
+
+    // Floating pink hearts
+    function makeHeart() {
+        let h = document.createElement("div");
+        h.classList.add("heart");
+        h.innerHTML = "❤";
+        h.style.left = Math.random() * window.innerWidth + "px";
+        h.style.bottom = "-20px";
+        h.style.fontSize = (Math.random() * 15 + 15) + "px";
+        h.style.animationDuration = (Math.random() * 3 + 4) + "s";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 6000);
+    }
+
+    setInterval(makeHeart, 300);
+</script>
+
+</body>
+</html>
