@@ -20,19 +20,20 @@ class Paper {
 
   updateTransform(paper) {
     paper.style.transform =
-      translate(${this.paperX}px, ${this.paperY}px) rotate(${this.rotation}deg);
+      `translate(${this.paperX}px, ${this.paperY}px) rotate(${this.rotation}deg)`;
   }
 
   init(paper) {
 
-    // ⭐ FIX: Center all papers on screen on start
-    const centerX = window.innerWidth / 2 - paper.offsetWidth / 2;
-    const centerY = window.innerHeight / 2 - paper.offsetHeight / 2;
+    // ❗IMPORTANT → DO NOT CHANGE ORIGINAL POSITION
+    const rect = paper.getBoundingClientRect();
+    this.paperX = rect.left;
+    this.paperY = rect.top;
 
-    this.paperX = centerX;
-    this.paperY = centerY;
+    // 🔥 FIX: Do NOT convert to fixed. Keep it absolute.
+    // paper.style.position = "fixed";   ❌ REMOVE
+    paper.style.position = "absolute";    // ✔ original behaviour
 
-    paper.style.position = "absolute";
     this.updateTransform(paper);
 
     const move = (e) => {
