@@ -1,69 +1,85 @@
 let highestZ = 1;
 
-/* ===== MUSIC PLAY ===== */
-function playMusic() {
-  const music = document.getElementById("bgm");
-  if (music && music.paused) music.play().catch(() => {});
-  document.removeEventListener("click", playMusic);
-  document.removeEventListener("touchstart", playMusic);
-}
-document.addEventListener("click", playMusic);
-document.addEventListener("touchstart", playMusic);
-
-/* ===== PAPER ===== */
 class Paper {
   holding = false;
-  x = 0;
-  y = 0;
-  prevX = 0;
-  prevY = 0;
+  startX = 0;
+  startY = 0;
+  paperX = 0;
+  paperY = 0;
   rotation = Math.random() * 30 - 15;
+
+  getPos(e) {
+    if (e.touches) {
+      return {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY
+      };
+    }
+    return { x: e.clientX, y: e.clientY };
+  }
+
+  updateTransform(paper) {
+    paper.style.transform =
+      translate(${this.paperX}px, ${this.paperY}px) rotate(${this.rotation}deg);
+  }
 
   init(paper) {
 
-    const move = (x, y) => {
-      if (!this.holding) return;
-      this.x += x - this.prevX;
-      this.y += y - this.prevY;
-      this.prevX = x;
-      this.prevY = y;
+    // ⭐ FIX: Center all papers on screen on start
+    const centerX = window.innerWidth / 2 - paper.offsetWidth / 2;
+    const centerY = window.innerHeight / 2 - paper.offsetHeight / 2;
 
-      paper.style.transform =
-        `translate(${this.x}px, ${this.y}px) rotate(${this.rotation}deg)`;
+    this.paperX = centerX;
+    this.paperY = centerY;
+
+    paper.style.position = "absolute";
+    this.updateTransform(paper);
+
+    const move = (e) => {
+      if (!this.holding) return;
+
+      const pos = this.getPos(e);
+
+      const dx = pos.x - this.startX;
+      const dy = pos.y - this.startY;
+
+      this.paperX += dx;
+      this.paperY += dy;
+
+      this.startX = pos.x;
+      this.startY = pos.y;
+
+      this.updateTransform(paper);
+      e.preventDefault();
     };
 
-    /* DESKTOP */
-    paper.addEventListener("mousedown", e => {
+    const down = (e) => {
+      const pos = this.getPos(e);
+
       this.holding = true;
+      this.startX = pos.x;
+      this.startY = pos.y;
+
       paper.style.zIndex = highestZ++;
-      this.prevX = e.clientX;
-      this.prevY = e.clientY;
-    });
-
-    document.addEventListener("mousemove", e => move(e.clientX, e.clientY));
-    document.addEventListener("mouseup", () => this.holding = false);
-
-    /* MOBILE */
-    paper.addEventListener("touchstart", e => {
-      e.preventDefault(); // 🔥 VERY IMPORTANT
-      this.holding = true;
-      paper.style.zIndex = highestZ++;
-      const t = e.touches[0];
-      this.prevX = t.clientX;
-      this.prevY = t.clientY;
-    }, { passive: false });
-
-    document.addEventListener("touchmove", e => {
-      if (!this.holding) return;
-      const t = e.touches[0];
-      move(t.clientX, t.clientY);
       e.preventDefault();
-    }, { passive: false });
+    };
 
-    document.addEventListener("touchend", () => this.holding = false);
+    const up = () => {
+      this.holding = false;
+    };
+
+    // Mouse
+    paper.addEventListener("mousedown", down);
+    document.addEventListener("mousemove", move);
+    document.addEventListener("mouseup", up);
+
+    // Touch
+    paper.addEventListener("touchstart", down, { passive: false });
+    document.addEventListener("touchmove", move, { passive: false });
+    document.addEventListener("touchend", up);
   }
 }
 
-document.querySelectorAll(".paper").forEach(p => {
-  new Paper().init(p);
+document.querySelectorAll(".paper").forEach((paper) => {
+  new Paper().init(paper);
 });
