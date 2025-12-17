@@ -25,15 +25,14 @@ class Paper {
 
   init(paper) {
 
-    // ❗IMPORTANT → DO NOT CHANGE ORIGINAL POSITION
-    const rect = paper.getBoundingClientRect();
-    this.paperX = rect.left;
-    this.paperY = rect.top;
+    // ⭐ FIX: Center all papers on screen on start
+    const centerX = window.innerWidth / 2 - paper.offsetWidth / 2;
+    const centerY = window.innerHeight / 2 - paper.offsetHeight / 2;
 
-    // 🔥 FIX: Do NOT convert to fixed. Keep it absolute.
-    // paper.style.position = "fixed";   ❌ REMOVE
-    paper.style.position = "absolute";    // ✔ original behaviour
+    this.paperX = centerX;
+    this.paperY = centerY;
 
+    paper.style.position = "absolute";
     this.updateTransform(paper);
 
     const move = (e) => {
