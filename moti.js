@@ -1,5 +1,5 @@
 let highestZ = 1;
-let stackOffset = 0; // thoda natural spread
+let stackOffset = 0;
 
 /* ================= MUSIC PLAY ON FIRST TOUCH / CLICK ================= */
 function playMusicOnce() {
@@ -14,7 +14,7 @@ function playMusicOnce() {
 document.addEventListener("click", playMusicOnce);
 document.addEventListener("touchstart", playMusicOnce);
 
-
+/* ================= PAPER CLASS ================= */
 class Paper {
   holding = false;
   startX = 0;
@@ -47,10 +47,8 @@ class Paper {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
-    this.paperX =
-      centerX - paper.offsetWidth / 2 + stackOffset;
-    this.paperY =
-      centerY - paper.offsetHeight / 2 + stackOffset;
+    this.paperX = centerX - paper.offsetWidth / 2 + stackOffset;
+    this.paperY = centerY - paper.offsetHeight / 2 + stackOffset;
 
     stackOffset += 4;
 
@@ -105,10 +103,7 @@ class Paper {
   }
 }
 
-/* ===== INIT ===== */
+/* ================= INIT ================= */
 document.querySelectorAll(".paper").forEach(paper => {
   new Paper().init(paper);
 });
-
-
-
