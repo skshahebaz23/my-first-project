@@ -1,18 +1,29 @@
 let highestZ = 1;
 let stackOffset = 0;
 
-/* ================= MUSIC PLAY ON FIRST TOUCH / CLICK ================= */
+/* ================= MUSIC PLAY (MOBILE SAFE) ================= */
 function playMusicOnce() {
   const music = document.getElementById("bgm");
-  if (music && music.paused) {
+  if (!music) return;
+
+  if (music.paused) {
+    music.muted = false;
     music.play().catch(() => {});
   }
+
   document.removeEventListener("click", playMusicOnce);
   document.removeEventListener("touchstart", playMusicOnce);
 }
 
-document.addEventListener("click", playMusicOnce);
-document.addEventListener("touchstart", playMusicOnce);
+/* Mobile browsers need element interaction */
+function bindMusicToElements() {
+  document.querySelectorAll(".paper").forEach(paper => {
+    paper.addEventListener("touchstart", playMusicOnce, { passive: true });
+    paper.addEventListener("mousedown", playMusicOnce);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", bindMusicToElements);
 
 /* ================= PAPER CLASS ================= */
 class Paper {
@@ -84,6 +95,7 @@ class Paper {
       this.startY = pos.y;
 
       paper.style.zIndex = highestZ++;
+      playMusicOnce(); // 🔥 direct interaction
       e.preventDefault();
     };
 
@@ -107,3 +119,5 @@ class Paper {
 document.querySelectorAll(".paper").forEach(paper => {
   new Paper().init(paper);
 });
+
+
