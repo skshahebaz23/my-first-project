@@ -1,5 +1,5 @@
 let highestZ = 1;
-let stackOffset = 0;   // ⭐ important
+let stackOffset = 0; // thoda natural spread
 
 class Paper {
   holding = false;
@@ -16,36 +16,41 @@ class Paper {
         y: e.touches[0].clientY
       };
     }
-    return { x: e.clientX, y: e.clientY };
+    return {
+      x: e.clientX,
+      y: e.clientY
+    };
   }
 
-  updateTransform(paper) {
+  update(paper) {
     paper.style.transform =
       `translate(${this.paperX}px, ${this.paperY}px) rotate(${this.rotation}deg)`;
   }
 
   init(paper) {
 
-    // ⭐ PERFECT CENTER STACK (mobile + desktop)
+    /* ===== CENTER STACK ===== */
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
-    this.paperX = centerX - paper.offsetWidth / 2 + stackOffset;
-    this.paperY = centerY - paper.offsetHeight / 2 + stackOffset;
+    this.paperX =
+      centerX - paper.offsetWidth / 2 + stackOffset;
+    this.paperY =
+      centerY - paper.offsetHeight / 2 + stackOffset;
 
-    stackOffset += 3;   // 👈 thoda sa natural spread
+    stackOffset += 4;
 
     paper.style.position = "absolute";
     paper.style.left = "0";
     paper.style.top = "0";
 
-    this.updateTransform(paper);
+    this.update(paper);
 
+    /* ===== MOVE ===== */
     const move = (e) => {
       if (!this.holding) return;
 
       const pos = this.getPos(e);
-
       const dx = pos.x - this.startX;
       const dy = pos.y - this.startY;
 
@@ -55,7 +60,7 @@ class Paper {
       this.startX = pos.x;
       this.startY = pos.y;
 
-      this.updateTransform(paper);
+      this.update(paper);
       e.preventDefault();
     };
 
@@ -74,18 +79,21 @@ class Paper {
       this.holding = false;
     };
 
-    // Mouse
+    /* ===== DESKTOP ===== */
     paper.addEventListener("mousedown", down);
     document.addEventListener("mousemove", move);
     document.addEventListener("mouseup", up);
 
-    // Touch
+    /* ===== MOBILE ===== */
     paper.addEventListener("touchstart", down, { passive: false });
     document.addEventListener("touchmove", move, { passive: false });
     document.addEventListener("touchend", up);
   }
 }
 
-document.querySelectorAll(".paper").forEach((paper) => {
+/* ===== INIT ===== */
+document.querySelectorAll(".paper").forEach(paper => {
   new Paper().init(paper);
 });
+
+
