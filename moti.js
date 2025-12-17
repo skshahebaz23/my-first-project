@@ -1,4 +1,5 @@
 let highestZ = 1;
+let stackOffset = 0;   // ⭐ important
 
 class Paper {
   holding = false;
@@ -25,14 +26,19 @@ class Paper {
 
   init(paper) {
 
-    // ⭐ FIX: Center all papers on screen on start
-    const centerX = window.innerWidth / 2 - paper.offsetWidth / 2;
-    const centerY = window.innerHeight / 2 - paper.offsetHeight / 2;
+    // ⭐ PERFECT CENTER STACK (mobile + desktop)
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
 
-    this.paperX = centerX;
-    this.paperY = centerY;
+    this.paperX = centerX - paper.offsetWidth / 2 + stackOffset;
+    this.paperY = centerY - paper.offsetHeight / 2 + stackOffset;
+
+    stackOffset += 3;   // 👈 thoda sa natural spread
 
     paper.style.position = "absolute";
+    paper.style.left = "0";
+    paper.style.top = "0";
+
     this.updateTransform(paper);
 
     const move = (e) => {
