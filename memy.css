@@ -1,45 +1,62 @@
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+/* BODY */
 body {
   font-family: "Varela Round", "Quicksand", sans-serif;
-  background: url(SHAN0.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: black;
+  background: black;
+  min-height: 100vh;
 }
 
+/* WRAP */
 .wrap {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px 10px 40px;
 }
 
+/* HEADING */
 h1 {
   text-align: center;
-  font-size: 4.5em;
+  font-size: clamp(32px, 8vw, 72px);
   color: #fdfdfd;
   margin: 20px 0;
+  font-family: "Great Vibes", cursive;
 }
 
-/* MAIN CARD */
+/* MAIN CARD (BACKGROUND PIC INSIDE) */
 .postcard {
-  width: 800px;
-  height: 500px;
-  background: rgba(255, 255, 255, 0.101);
-  border-radius: 2%;
-  padding: 30px;
+  width: 90%;
+  max-width: 800px;
+
+  height: 80vh;
+  max-height: 500px;
+  min-height: 380px;
+
+  background:
+    linear-gradient(rgba(255,255,255,0.65), rgba(255,255,255,0.65)),
+    url(SHAN0.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: 14px;
+  padding: 20px;
   box-shadow: 0.8em 0.8em 15px rgba(0, 0, 0, 0.3);
 
-  display: flex;               /* IMPORTANT */
-  flex-direction: column;      /* IMPORTANT */
+  display: flex;
+  flex-direction: column;
 
   transform: rotate(2.5deg);
   transition: all 0.5s ease;
+  position: relative;
 }
 
 .postcard:hover {
@@ -48,8 +65,13 @@ h1 {
 
 /* BLUR BACK CARD */
 .postcard1 {
-  width: 800px;
-  height: 500px;
+  width: 90%;
+  max-width: 800px;
+
+  height: 80vh;
+  max-height: 500px;
+  min-height: 380px;
+
   background: #e4a0e684;
   position: absolute;
   top: 150px;
@@ -57,17 +79,18 @@ h1 {
   transform: translateX(-50%) rotate(2.5deg);
   filter: blur(2px);
   z-index: -1;
-  border-radius: 2%;
+  border-radius: 14px;
 }
 
 /* 🔥 SCROLL AREA */
 .letter-content {
-  flex: 1;                 /* FULL HEIGHT */
-  overflow-y: auto;        /* SCROLL */
-  padding-right: 12px;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 10px;
 }
 
-/* SMOOTH SCROLLBAR */
+/* SCROLLBAR */
 .letter-content::-webkit-scrollbar {
   width: 6px;
 }
@@ -79,21 +102,26 @@ h1 {
 
 /* TEXT */
 p {
-  font-size: 22px;
+  font-size: clamp(16px, 4.5vw, 22px);
   font-family: cursive;
-  font-weight: 540;
+  font-weight: 500;
   color: #000;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  word-break: break-word;
 }
 
+/* HIGHLIGHT TEXT */
 p span {
-  font-size: 30px;
+  font-size: clamp(20px, 6vw, 30px);
   font-weight: 600;
   text-shadow: 0 0 20px rgb(255, 255, 255);
   color: #800020;
 }
 
+/* EXTRA TEXT */
 .ullu {
-  font-size: 25px;
+  font-size: clamp(18px, 5vw, 25px);
   text-shadow: 0 0 20px rgb(255, 255, 255);
 }
 
@@ -103,3 +131,12 @@ footer {
   text-align: center;
   color: white;
 }
+
+/* MOBILE SAFETY */
+@media (max-width: 600px) {
+  .postcard,
+  .postcard1 {
+    transform: rotate(0deg);
+  }
+}
+
