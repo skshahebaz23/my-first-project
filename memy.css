@@ -1,151 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Letter</title>
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+/* BODY */
+body {
+  font-family: "Varela Round", "Quicksand", sans-serif;
+  background: url(SHAN0.jpg) no-repeat center center/cover;
+  background-color: black;
+  min-height: 100vh;
+}
 
-    body {
-      font-family: "Varela Round", "Quicksand", sans-serif;
-      background: url("SHAN0.jpg") no-repeat center center/cover;
-      background-color: black;
-      min-height: 100vh;
-    }
+/* WRAPPER */
+.wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px 40px;
+}
 
-    .wrap {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 20px 10px 40px;
-    }
+/* HEADING */
+h1 {
+  text-align: center;
+  font-size: clamp(32px, 8vw, 72px);
+  color: #fdfdfd;
+  margin: 20px 0;
+  font-family: 'Great Vibes', cursive;
+}
 
-    h1 {
-      text-align: center;
-      font-size: clamp(32px, 8vw, 72px);
-      color: #fdfdfd;
-      margin: 20px 0;
-      font-family: 'Great Vibes', cursive;
-    }
+/* MAIN CARD */
+.postcard {
+  width: 90%;              /* 🔥 mobile fix */
+  max-width: 800px;        /* laptop same */
+  min-height: 500px;       /* height fixed hata di */
 
-    /* MAIN CARD */
-    .postcard {
-      width: 90%;
-      max-width: 800px;
-      min-height: 500px;
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0.8em 0.8em 15px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.101);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0.8em 0.8em 15px rgba(0, 0, 0, 0.3);
 
-      display: flex;
-      flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-      transform: rotate(2deg);
-      transition: all 0.5s ease;
-      position: relative;
-      z-index: 1;
-    }
+  transform: rotate(2deg);
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 1;
+}
 
-    .postcard:hover {
-      transform: rotate(0deg);
-    }
+/* HOVER */
+.postcard:hover {
+  transform: rotate(0deg);
+}
 
-    /* BLUR BACK CARD */
-    .postcard1 {
-      width: 90%;
-      max-width: 800px;
-      min-height: 500px;
-      background: #e4a0e684;
-      position: absolute;
-      top: 180px;
-      left: 50%;
-      transform: translateX(-50%) rotate(2deg);
-      filter: blur(2px);
-      z-index: 0;
-      border-radius: 14px;
-    }
+/* BLUR BACK CARD */
+.postcard1 {
+  width: 90%;
+  max-width: 800px;
+  min-height: 500px;
 
-    /* SCROLL AREA */
-    .letter-content {
-      flex: 1;
-      overflow-y: auto;
-      padding-right: 10px;
-    }
+  background: #e4a0e684;
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2deg);
+  filter: blur(2px);
+  z-index: -1;
+  border-radius: 14px;
+}
 
-    .letter-content::-webkit-scrollbar {
-      width: 6px;
-    }
+/* SCROLL AREA */
+.letter-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+}
 
-    .letter-content::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 10px;
-    }
+/* SCROLLBAR */
+.letter-content::-webkit-scrollbar {
+  width: 6px;
+}
 
-    /* TEXT */
-    p {
-      font-size: clamp(16px, 4.5vw, 22px);
-      font-family: cursive;
-      font-weight: 500;
-      color: #000;
-      line-height: 1.5;
-      margin-bottom: 16px;
-      word-wrap: break-word;
-      white-space: normal;
-    }
+.letter-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
 
-    p span {
-      font-size: clamp(20px, 6vw, 30px);
-      font-weight: 600;
-      text-shadow: 0 0 20px rgb(255, 255, 255);
-      color: #800020;
-    }
+/* TEXT FIX (LETTER CUT ISSUE SOLVED) */
+p {
+  font-size: clamp(16px, 4.5vw, 22px); /* 🔥 auto resize */
+  font-family: cursive;
+  font-weight: 500;
+  color: #000;
+  line-height: 1.5;                    /* 🔥 important */
+  margin-bottom: 16px;
 
-    .ullu {
-      font-size: clamp(18px, 5vw, 25px);
-      text-shadow: 0 0 20px rgb(255, 255, 255);
-    }
+  word-wrap: break-word;
+  white-space: normal;
+}
 
-    footer {
-      margin-top: 30px;
-      text-align: center;
-      color: white;
-      font-size: 14px;
-    }
+/* HIGHLIGHT TEXT */
+p span {
+  font-size: clamp(20px, 6vw, 30px);
+  font-weight: 600;
+  text-shadow: 0 0 20px rgb(255, 255, 255);
+  color: #800020;
+}
 
-    /* MOBILE EXTRA FIX */
-    @media (max-width: 600px) {
-      .postcard,
-      .postcard1 {
-        transform: rotate(0deg);
-      }
-    }
-  </style>
-</head>
-<body>
+/* EXTRA TEXT */
+.ullu {
+  font-size: clamp(18px, 5vw, 25px);
+  text-shadow: 0 0 20px rgb(255, 255, 255);
+}
 
-  <div class="wrap">
-    <h1>For You ❤️</h1>
+/* FOOTER */
+footer {
+  margin: 2em auto;
+  text-align: center;
+  color: white;
+}
 
-    <div class="postcard1"></div>
-
-    <div class="postcard">
-      <div class="letter-content">
-        <p><span>Hey,</span></p>
-        <p>
-          This is just a small letter to remind you how special you are to me.
-          Every moment with you feels like a beautiful memory in the making.
-        </p>
-        <p>
-          I may
+/* MOBILE EXTRA SAFETY */
+@media (max-width: 600px) {
+  .postcard,
+  .postcard1 {
+    transform: rotate(0deg);
+  }
+}
