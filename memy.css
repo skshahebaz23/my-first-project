@@ -1,58 +1,45 @@
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-/* BODY */
 body {
   font-family: "Varela Round", "Quicksand", sans-serif;
-  background: url(SHAN0.jpg) no-repeat center center / cover;
+  background: url(SHAN0.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
   background-color: black;
-  min-height: 100vh;
 }
 
-/* WRAP */
 .wrap {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 10px 40px;
 }
 
-/* HEADING */
 h1 {
   text-align: center;
-  font-size: clamp(32px, 8vw, 72px);
+  font-size: 4.5em;
   color: #fdfdfd;
   margin: 20px 0;
-  font-family: "Great Vibes", cursive;
 }
 
 /* MAIN CARD */
 .postcard {
-  width: 90%;
-  max-width: 800px;
-
-  height: 80vh;          /* 🔥 mobile ke hisaab se */
-  max-height: 500px;    /* laptop look same */
-  min-height: 380px;
-
+  width: 800px;
+  height: 500px;
   background: rgba(255, 255, 255, 0.101);
-  border-radius: 14px;
-  padding: 20px;
+  border-radius: 2%;
+  padding: 30px;
   box-shadow: 0.8em 0.8em 15px rgba(0, 0, 0, 0.3);
 
-  display: flex;
-  flex-direction: column;
+  display: flex;               /* IMPORTANT */
+  flex-direction: column;      /* IMPORTANT */
 
-  transform: rotate(2deg);
+  transform: rotate(2.5deg);
   transition: all 0.5s ease;
-  position: relative;
-  z-index: 1;
 }
 
 .postcard:hover {
@@ -61,32 +48,26 @@ h1 {
 
 /* BLUR BACK CARD */
 .postcard1 {
-  width: 90%;
-  max-width: 800px;
-
-  height: 80vh;
-  max-height: 500px;
-  min-height: 380px;
-
+  width: 800px;
+  height: 500px;
   background: #e4a0e684;
   position: absolute;
   top: 150px;
   left: 50%;
-  transform: translateX(-50%) rotate(2deg);
+  transform: translateX(-50%) rotate(2.5deg);
   filter: blur(2px);
   z-index: -1;
-  border-radius: 14px;
+  border-radius: 2%;
 }
 
-/* SCROLL AREA (IMPORTANT) */
+/* 🔥 SCROLL AREA */
 .letter-content {
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 10px;
+  flex: 1;                 /* FULL HEIGHT */
+  overflow-y: auto;        /* SCROLL */
+  padding-right: 12px;
 }
 
-/* SCROLLBAR */
+/* SMOOTH SCROLLBAR */
 .letter-content::-webkit-scrollbar {
   width: 6px;
 }
@@ -98,28 +79,21 @@ h1 {
 
 /* TEXT */
 p {
-  font-size: clamp(16px, 4.5vw, 22px);
+  font-size: 22px;
   font-family: cursive;
-  font-weight: 500;
+  font-weight: 540;
   color: #000;
-  line-height: 1.6;        /* 🔥 text cut fix */
-  margin-bottom: 16px;
-
-  word-break: break-word;
-  white-space: normal;
 }
 
-/* HIGHLIGHT */
 p span {
-  font-size: clamp(20px, 6vw, 30px);
+  font-size: 30px;
   font-weight: 600;
   text-shadow: 0 0 20px rgb(255, 255, 255);
   color: #800020;
 }
 
-/* EXTRA TEXT */
 .ullu {
-  font-size: clamp(18px, 5vw, 25px);
+  font-size: 25px;
   text-shadow: 0 0 20px rgb(255, 255, 255);
 }
 
@@ -128,12 +102,4 @@ footer {
   margin: 2em auto;
   text-align: center;
   color: white;
-}
-
-/* MOBILE EXTRA SAFETY */
-@media (max-width: 600px) {
-  .postcard,
-  .postcard1 {
-    transform: rotate(0deg);
-  }
 }
