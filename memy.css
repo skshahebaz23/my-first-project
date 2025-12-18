@@ -9,12 +9,12 @@
 /* BODY */
 body {
   font-family: "Varela Round", "Quicksand", sans-serif;
-  background: url(SHAN0.jpg) no-repeat center center/cover;
+  background: url(SHAN0.jpg) no-repeat center center / cover;
   background-color: black;
   min-height: 100vh;
 }
 
-/* WRAPPER */
+/* WRAP */
 .wrap {
   min-height: 100vh;
   display: flex;
@@ -29,14 +29,17 @@ h1 {
   font-size: clamp(32px, 8vw, 72px);
   color: #fdfdfd;
   margin: 20px 0;
-  font-family: 'Great Vibes', cursive;
+  font-family: "Great Vibes", cursive;
 }
 
 /* MAIN CARD */
 .postcard {
-  width: 90%;              /* 🔥 mobile fix */
-  max-width: 800px;        /* laptop same */
-  min-height: 500px;       /* height fixed hata di */
+  width: 90%;
+  max-width: 800px;
+
+  height: 80vh;          /* 🔥 mobile ke hisaab se */
+  max-height: 500px;    /* laptop look same */
+  min-height: 380px;
 
   background: rgba(255, 255, 255, 0.101);
   border-radius: 14px;
@@ -52,7 +55,6 @@ h1 {
   z-index: 1;
 }
 
-/* HOVER */
 .postcard:hover {
   transform: rotate(0deg);
 }
@@ -61,7 +63,10 @@ h1 {
 .postcard1 {
   width: 90%;
   max-width: 800px;
-  min-height: 500px;
+
+  height: 80vh;
+  max-height: 500px;
+  min-height: 380px;
 
   background: #e4a0e684;
   position: absolute;
@@ -73,10 +78,11 @@ h1 {
   border-radius: 14px;
 }
 
-/* SCROLL AREA */
+/* SCROLL AREA (IMPORTANT) */
 .letter-content {
-  flex: 1;
+  height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   padding-right: 10px;
 }
 
@@ -90,20 +96,20 @@ h1 {
   border-radius: 10px;
 }
 
-/* TEXT FIX (LETTER CUT ISSUE SOLVED) */
+/* TEXT */
 p {
-  font-size: clamp(16px, 4.5vw, 22px); /* 🔥 auto resize */
+  font-size: clamp(16px, 4.5vw, 22px);
   font-family: cursive;
   font-weight: 500;
   color: #000;
-  line-height: 1.5;                    /* 🔥 important */
+  line-height: 1.6;        /* 🔥 text cut fix */
   margin-bottom: 16px;
 
-  word-wrap: break-word;
+  word-break: break-word;
   white-space: normal;
 }
 
-/* HIGHLIGHT TEXT */
+/* HIGHLIGHT */
 p span {
   font-size: clamp(20px, 6vw, 30px);
   font-weight: 600;
