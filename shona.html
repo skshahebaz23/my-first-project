@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+/* Pages */
+.page {
+  width: 100%;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+  color: #fceded;
+  background-size: cover;
+  background-position: center;
+}
+
+.active {
+  display: flex;
+}
+
+/* Text Animation */
+.word {
+  opacity: 0;
+  display: inline-block;
+  margin: 5px;
+  font-size: 22px;
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Button */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background: #a83232;
+  color: white;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+/* ✅ IMAGE FIXES */
+
+/* All images */
+img {
+  max-width: 500%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* GIF */
+.gif-img {
+  width: 300px;
+}
+
+/* Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Last page image */
+.main-img {
+  width: 180px;
+}
+
+/* Line spacing */
+#text2 div, #dua div, #finalText div {
+  margin: 10px 0;
+}
+
+/* Mobile */
+@media(max-width:600px){
+  .word { font-size:18px; }
+
+  .gif-img {
+    width: 300px;
+  }
+
+  .main-img {
+    width: 150px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSIC -->
+<audio id="music" src="la.mp3" loop></audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1" style="background-image:url('eidbg.jpg')">
+  <div id="text1"></div>
+
+  <img src="eidgif.1.jpg" class="gif-img">
+
+  <h2>MERI PYAARI SI JAAN KE LIYE KUCH HAI... NICHE TAP KARE...</h2>
+
+  <button onclick="nextPage()">See Your Surprise ❤️</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2" style="background-image:url('eidbg.jpg')">
+  <h2>💕 EID MUBARAK 💕</h2>
+
+  <img src="eidgif.2.jpg" class="gif-img">
+
+  <div id="text2"></div>
+
+  <button onclick="nextPage()">Next ➡️</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3" style="background-image:url('eidbg.jpg')">
+  <h3>❤️ Our Memories ❤️</h3>
+
+  <div class="gallery">
+    <img src="eidselfie.1.jpeg" onclick="alert('❤️ Love you')">
+    <img src="eidselfie.2.jpeg" onclick="alert('❤️ Forever')">
+    <img src="eidselfie.3.jpeg" onclick="alert('❤️ My Jaan')">
+    <img src="eidselfie.4.jpeg" onclick="alert('❤️ Always')">
+  </div>
+
+  <button onclick="nextPage()">Next ➡️</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4" style="background-image:url('eidbg.jpg')">
+  <img src="eiddua.jpg" class="main-img">
+
+  <div id="dua"></div>
+
+  <button onclick="nextPage()">Final Surprise 🎁</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5" style="background-image:url('eidbg.jpg')">
+  <img src="eidfuture.jpg">
+  <div id="finalText"></div>
+</div>
+
+<script>
+
+let current = 1;
+
+/* TEXT ANIMATION (LINE BY LINE + WORD BY WORD) */
+function showText(id, text, delay=300){
+  let container = document.getElementById(id);
+  container.innerHTML = "";
+
+  let lines = text.split("|");
+
+  lines.forEach((line, lineIndex)=>{
+    let div = document.createElement("div");
+
+    let words = line.split(" ");
+    words.forEach((word, i)=>{
+      let span = document.createElement("span");
+      span.innerText = word;
+      span.classList.add("word");
+      span.style.animationDelay = ((i + lineIndex*words.length) * delay)+"ms";
+      div.appendChild(span);
+    });
+
+    container.appendChild(div);
+  });
+}
+
+/* PAGE CHANGE */
+function nextPage(){
+  document.getElementById("page"+current).classList.remove("active");
+  current++;
+
+  if(current > 5) current = 5;
+
+  document.getElementById("page"+current).classList.add("active");
+
+  document.getElementById("music").play();
+
+  loadText();
+}
+
+/* LOAD TEXT */
+function loadText(){
+  if(current == 1){
+    showText("text1","I Made Something Just For You ❤️ This Eid");
+  }
+
+  if(current == 2){
+    showText("text2","EID MUBARAK MERI JAAN 🌙|ANOTHER EID... AND ANOTHER REASON TO THANK ALLAH FOR YOU ❤️");
+  }
+
+  if(current == 4){
+    showText("dua","MAY OUR LOVE GROW DEEPER WITH EVERY|PASSING DAY MAY OUR HEARTS ALWAYS FIND PEACE IN EACH OTHER😘|MAY WE CELEBRATES A THOUSAND MORE EIDS TOGETHER AND LAUGHING|AMEEEN🤲");
+  }
+
+  if(current == 5){
+    showText("finalText","EID MUBARAK MY FOREVER💝|IN SHA ALLAH MAY OUR UPCOMING EID LOOKS LIKE☝️|thanks for watching...💍");
+  }
+}
+
+/* INIT */
+loadText();
+
+</script>
+
+</body>
+</html>
