@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise ❤️</title>
+
+<link rel="stylesheet" href="shan.css">
+
+</head>
+
+
+<body>
+
+
+<div class="stars"></div>
+
+
+
+
+<!-- ================= PAGE 1 ================= -->
+
+<section id="page1" class="page active">
+
+
+<img src="logo.jpg" class="main-photo">
+
+
+<h1>For Someone Special ❤️</h1>
+
+
+<p>
+Happy Birthday ✨
+<br>
+This is made just for you ❤️
+</p>
+
+
+
+<audio id="music1" controls loop>
+<source src="music1.mp3">
+</audio>
+
+
+
+<button class="btn" onclick="goToPage2()">
+Next ➜
+</button>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ================= PAGE 2 ================= -->
+
+
+<section id="page2" class="page">
+
+
+<div class="login-box">
+
+
+<h2>Unlock Surprise 🔐</h2>
+
+
+<input id="dateInput" placeholder="DD-MM-YYYY">
+
+
+<input id="timeInput" placeholder="HH:MM PM">
+
+
+
+<button class="btn" onclick="checkPassword()">
+Unlock ❤️
+</button>
+
+
+
+<p id="error"></p>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= PAGE 3 ================= -->
+
+
+<section id="page3" class="page">
+
+
+<h1>Call Memories 🎙️</h1>
+
+
+<audio controls>
+<source src="recording1.mp3">
+</audio>
+
+
+<audio controls>
+<source src="recording2.mp3">
+</audio>
+
+
+<audio controls>
+<source src="recording3.mp3">
+</audio>
+
+
+<audio controls>
+<source src="recording4.mp3">
+</audio>
+
+
+<audio controls>
+<source src="recording5.mp3">
+</audio>
+
+
+
+<button class="btn" onclick="goToPage4()">
+Next ➜
+</button>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= PAGE 4 ================= -->
+
+
+<section id="page4" class="page">
+
+
+<h1>Our Memories 📸</h1>
+
+
+
+<div class="scroll-gallery">
+
+
+<img src="gallery1.jpg">
+
+<img src="gallery2.jpg">
+
+<img src="gallery3.jpg">
+
+<img src="gallery4.jpg">
+
+<img src="gallery5.jpg">
+
+
+</div>
+
+
+
+<audio id="music2" autoplay loop>
+
+<source src="music2.mp3">
+
+</audio>
+
+
+
+<button class="btn" onclick="goToPage5()">
+Next ➜
+</button>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ================= PAGE 5 ================= -->
+
+
+<section id="page5" class="page">
+
+
+<h1>Memory Cards 🃏</h1>
+
+
+
+<div class="card" onclick="nextCard()">
+
+
+
+<img id="cardImg" src="card1.jpg">
+
+
+<p id="caption">
+First Memory ❤️
+</p>
+
+
+</div>
+
+
+
+
+<button class="btn" onclick="goToPage6()">
+Next ➜
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= PAGE 6 ================= -->
+
+
+<section id="page6" class="page">
+
+
+<h1>Take Selfie 📷</h1>
+
+
+
+<video id="camera" autoplay playsinline></video>
+
+
+<canvas id="canvas"></canvas>
+
+
+
+<button class="btn" onclick="takePhoto()">
+Capture ❤️
+</button>
+
+
+
+<img id="preview">
+
+
+
+<button class="btn" onclick="goToPage7()">
+Continue ➜
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= PAGE 7 ================= -->
+
+
+<section id="page7" class="page">
+
+
+<h1>
+Our Memories 📸
+</h1>
+
+
+
+<div class="side-gallery">
+
+
+<img src="logo.jpg">
+
+<img src="logo.jpg">
+
+<img src="logo.jpg">
+
+<img src="logo.jpg">
+
+
+
+</div>
+
+
+
+
+<button class="btn" onclick="goToPage8()">
+Next ➜
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= PAGE 8 ================= -->
+
+
+<section id="page8" class="page">
+
+
+<h1>
+Special Links 🔗
+</h1>
+
+
+
+<div class="links-box">
+
+
+<a href="#">Link 1 ❤️</a>
+
+<a href="#">Link 2 ✨</a>
+
+<a href="#">Link 3 ❤️</a>
+
+<a href="#">Link 4 🌙</a>
+
+
+</div>
+
+
+
+<button class="btn" onclick="goToPage9()">
+Next ➜
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ================= PAGE 9 ================= -->
+
+<section id="page9" class="page">
+
+<h1>
+My Special Memory 📸❤️
+</h1>
+
+
+<img class="page9-pic" src="logo.jpg">
+
+
+<button class="btn" onclick="goToPage10()">
+Next ➜
+</button>
+
+
+</section>
+
+
+
+<button class="btn" onclick="goToPage10()">
+
+Next ➜
+
+</button>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ================= PAGE 10 ================= -->
+
+
+<section id="page10" class="page">
+
+
+<h1>
+Thank You ❤️
+</h1>
+
+
+
+<img id="finalImg10">
+
+
+
+<br>
+
+
+
+<a 
+id="finalDownload"
+class="btn"
+download="selfie.png">
+
+Download Selfie 📥
+
+</a>
+
+
+
+
+<p class="thank">
+
+Thank you for watching my website ❤️
+
+<br><br>
+
+I hope you liked this surprise ✨
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+
+
+// PAGE SYSTEM
+
+
+function show(page){
+
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+
+document.getElementById(page)
+.classList.add("active");
+
+
+}
+
+
+
+
+
+
+function goToPage2(){
+
+show("page2");
+
+}
+
+
+
+
+
+
+function checkPassword(){
+
+
+let d=document.getElementById("dateInput").value;
+
+let t=document.getElementById("timeInput").value;
+
+
+
+if(d=="1" && t=="1"){
+
+
+document.getElementById("music1").pause();
+
+
+show("page3");
+
+
+}
+
+else{
+
+
+document.getElementById("error").innerHTML="Wrong ❤️";
+
+
+}
+
+
+}
+
+
+
+
+
+
+function goToPage4(){
+
+show("page4");
+
+}
+
+
+
+function goToPage5(){
+
+show("page5");
+
+}
+
+
+
+
+
+
+
+
+
+// PAGE 5 CARD
+
+
+let i=0;
+
+
+let imgs=[
+
+"card1.jpg",
+"card2.jpg",
+"card3.jpg",
+"card4.jpg",
+"card5.jpg"
+
+];
+
+
+
+let cap=[
+
+"First Memory ❤️",
+"Beautiful Moment ✨",
+"Special Day ❤️",
+"Best Time ❤️",
+"Forever ❤️"
+
+];
+
+
+
+
+
+function nextCard(){
+
+
+i++;
+
+
+if(i>=imgs.length){
+
+i=0;
+
+}
+
+
+document.getElementById("cardImg").src=imgs[i];
+
+
+document.getElementById("caption").innerHTML=cap[i];
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+// CAMERA
+
+
+let video=document.getElementById("camera");
+
+let canvas=document.getElementById("canvas");
+
+let stream=null;
+
+
+
+
+
+
+
+function goToPage6(){
+
+
+show("page6");
+
+
+
+if(stream==null){
+
+
+navigator.mediaDevices.getUserMedia({
+
+video:true
+
+})
+
+
+.then(s=>{
+
+
+stream=s;
+
+
+video.srcObject=s;
+
+
+})
+
+
+.catch(()=>{
+
+alert("Camera allow karo ❤️");
+
+});
+
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+function takePhoto(){
+
+
+
+canvas.width=video.videoWidth;
+
+canvas.height=video.videoHeight;
+
+
+
+let ctx=canvas.getContext("2d");
+
+
+
+ctx.drawImage(video,0,0);
+
+
+
+let img=canvas.toDataURL("image/png");
+
+
+
+document.getElementById("preview").src=img;
+
+
+document.getElementById("finalImg10").src=img;
+
+
+document.getElementById("finalDownload").href=img;
+
+
+
+
+
+if(stream){
+
+
+stream.getTracks()
+.forEach(track=>track.stop());
+
+
+stream=null;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function goToPage7(){
+
+
+show("page7");
+
+
+document.getElementById("music2").pause();
+
+
+}
+
+
+
+
+function goToPage8(){
+
+show("page8");
+
+}
+
+
+
+
+function goToPage9(){
+
+show("page9");
+
+}
+
+
+
+
+function goToPage10(){
+
+show("page10");
+
+}
+
+
+
+
+</script>
